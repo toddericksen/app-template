@@ -17,14 +17,14 @@ You'll need the following installed to run the template successfully:
 #### Creating a new app
 
 ```bash
-rails new [name] -d postgresql  -a propshaft -j esbuild -m https://raw.githubusercontent.com/toddericksen/app-template-master/template.rb
+rails new [name] -d postgresql  -a propshaft -j esbuild -m https://raw.githubusercontent.com/toddericksen/app-template/master/template.rb
 
 ```
 
 Or if you have downloaded this repo, you can reference template.rb locally:
 
 ```bash
-rails new [name] -d postgresql  -a propshaft -j esbuild -m ./app-template-master/template.rb
+rails new [name] -d postgresql  -a propshaft -j esbuild -m ./app-template/template.rb
 ```
 
 #### Running your app
