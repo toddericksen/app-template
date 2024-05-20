@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%= render 'shared/head' %>
+  </head>
+  <body class="flex h-full w-full flex-col overscroll-contain">
+    <main>
+      <%#= render 'shared/navbar' %>
+      <%= render 'shared/notices' %>
+      <%= yield %>
+    </main>
+    <%= render 'shared/footer' %>
+  </body>
+</html>

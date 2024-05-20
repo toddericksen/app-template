@@ -1,0 +1,93 @@
+<% if current_user != true_user %>
+  <div class="">
+    You're logged in as <b><%= current_user.name %> (<%= current_user.email %>)</b>
+    <%= link_to stop_impersonating_madmin_impersonates_path, method: :post do %><%= icon("fas", "times") %> Logout <% end %>
+  </div>
+<% end %>
+
+<nav class="bg-slate-50">
+  <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+    <div class="relative flex h-16 items-center justify-between">
+      <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+        <div class="flex flex-shrink-0 items-center">
+        <!-- Site icon-->
+            <!-- Eventually should be customer logo-->
+            <svg width="30" height="28" viewBox="0 0 30 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M5.46129 26.7714C6.55928 26.9912 13.0158 27.1012 14.4432 27.1012C15.8706 27.1012 22.3271 26.9912 23.4251 26.7714C24.5231 26.5516 25.8152 25.857 26.5618 25.2463C27.3304 24.6357 28.0805 23.5016 28.4758 22.3781C28.871 21.2301 29.0357 15.796 29.0357 13.9152C29.0357 12.0833 28.8491 6.17243 28.4758 5.04885C28.1244 3.90085 27.5578 2.91222 26.8112 2.30158C26.0865 1.69094 24.4682 1.32057 23.3922 1.10074C22.3161 0.856481 15.8706 0.734352 14.4432 0.734352C13.0158 0.734352 6.54831 0.844267 5.42835 1.0641C4.33035 1.2595 3.27556 1.72697 2.50697 2.33761C1.76033 2.94825 1.18937 3.82757 0.79409 4.97557C0.398811 6.12358 0.201172 12.0589 0.201172 13.9152C0.201172 15.7716 0.409791 21.1934 0.761151 22.3414C1.13447 23.465 1.74019 24.5601 2.46487 25.1707C3.21151 25.7813 4.38525 26.5272 5.46129 26.7714ZM16.3122 18.3901L17.1127 17.3073L22.1891 10.4407C22.4103 10.1414 22.5837 9.88841 22.7093 9.68172C22.8349 9.47503 22.8487 9.25379 22.7507 9.01799C22.6704 8.7952 22.4277 8.53412 22.0228 8.23475L19.6723 6.49708L12.9754 15.5557C12.6761 15.9606 12.3602 16.2037 12.028 16.2848C11.6957 16.3659 11.3095 16.2437 10.8693 15.9183C10.6581 15.7621 10.3936 15.5122 10.0759 15.1684C9.78886 14.82 9.58334 14.5456 9.45934 14.345L7.91692 16.4314C8.33105 16.792 8.70116 17.1201 9.02726 17.4156C9.37097 17.7241 9.71889 18.0086 10.071 18.2689C10.4101 18.5468 10.7887 18.8267 11.2066 19.1085C11.695 19.4423 12.1873 19.6973 12.6833 19.8734C13.1924 20.0319 13.6919 20.0745 14.1819 20.001C14.6895 19.9406 15.1477 19.7075 15.5565 19.3018C15.774 19.0813 16.0259 18.7774 16.3122 18.3901Z" fill="#00B03C"/>
+              </svg>
+          <%= link_to Rails.configuration.application_name, root_path, class: "font-semibold ml-2 text-green-600"  %>
+        </div>
+        <div class=" sm:ml-6 sm:block">
+          <div class="flex space-x-4">
+            <%= link_to "Companies", companies_path, class: "font-medium px-2 py-1 rounded text-slate-600 hover:bg-slate-100" %>
+            <%= link_to "Locations", locations_path, class: "font-medium px-2 py-1 rounded text-slate-600 hover:bg-slate-100" %>
+            <%= link_to "Users", users_path, class: "font-medium px-2 py-1 rounded text-slate-600 hover:bg-slate-100" %>
+
+            <% if user_signed_in? %>
+              <!-- Desktop left  nav links -->
+              <!-- Add links to new models here -->
+              <%#= link_to "Posts", posts_path, class: "font-medium px-2 py-1 rounded text-slate-600 hover:bg-slate-100" %>
+              <% if current_user.admin? && respond_to?(:madmin_root_path) %>
+                <%= link_to "Admin Area", madmin_root_path, class: "font-medium px-2 py-1 rounded text-slate-600 hover:bg-slate-100" %>
+              <% end %> 
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+        <!-- Desktop right  nav links -->
+        <% if user_signed_in? %>
+          
+          <div class="relative ml-3">
+            <%= link_to notifications_path do %>
+              <div class="relative rounded-full p-1 text-gray-700 hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-slate focus:ring-offset-2 focus:ring-offset-gray-800">
+                <span class="absolute -inset-1.5"></span>
+                <span class="sr-only">View notifications</span>
+                <svg
+                  class="h-6 w-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  aria-hidden="true"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0"
+                  />
+                </svg>
+              </div>
+            <% end %>
+          </div>
+          <div class="relative ml-3" data-controller="dropdown">
+            <button data-action="click->dropdown#toggle click@window->dropdown#hide" role="button" class="cursor-pointer inline-block select-none" aria-label="Profile Menu">
+              <span class="flex items-center text-gray-700 dark:text-gray-100 appearance-none">
+                <span class="absolute -inset-1.5"></span>
+                <span class="sr-only">Open user menu</span>
+                <%= image_tag avatar_path(current_user, size: 40), height: 20, width: 20, class: "h-8 w-8 rounded-full" %>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" class="fill-current w-4 h-4"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"></path></svg>
+              </span>
+            </button>
+
+            <div data-dropdown-target="menu" data-transition-enter="transition ease-out duration-200" data-transition-enter-from="opacity-0 translate-y-1" data-transition-enter-to="opacity-100 translate-y-0" data-transition-leave="transition ease-in duration-150" data-transition-leave-from="opacity-100 translate-y-0" data-transition-leave-to="opacity-0 translate-y-1" class="z-20 mt-2 lg:absolute lg:right-0 dropdown-menu opacity-100 translate-y-0">
+              <div class="overflow-hidden bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded shadow-md">
+                <span class="border-b border-gray-200 dark:border-gray-700 font-semibold text-base text-gray-800 bg-white hover:bg-primary-50 dark:text-gray-50 dark:bg-gray-800 dark:hover:bg-primary-800 dark:text-gray-50 dark:bg-gray-800 transition ease-in-out duration-200 whitespace-nowrap no-underline block px-6 py-3"><%= current_user.name %> </span>
+                <%= link_to "Profile", edit_user_registration_path, class: "text-gray-800 bg-white hover:bg-primary-50 dark:text-gray-50 dark:bg-gray-800 dark:hover:bg-primary-800 transition ease-in-out duration-200 whitespace-nowrap no-underline block px-6 py-3" %>
+                <%= link_to "Password", edit_user_password_path, class: "text-gray-800 bg-white hover:bg-primary-50 dark:text-gray-50 dark:bg-gray-800 dark:hover:bg-primary-800 transition ease-in-out duration-200 whitespace-nowrap no-underline block px-6 py-3" %>
+                <%= button_to "Sign out", destroy_user_session_path, method: :delete, class: "w-full text-left font-medium cursor-pointer px-6 py-3 border-t border-gray-200 dark:border-gray-700 text-gray-800 bg-white hover:bg-primary-50 dark:text-gray-50 dark:bg-gray-800 dark:hover:bg-primary-800 transition ease-in-out duration-200 whitespace-nowrap" %>
+              </div>
+            </div>
+          </div>
+        <% else %>
+          <div class="relative ml-3">
+            <%= link_to "Create Account", new_user_registration_path, class: "font-medium px-2 py-1 rounded text-slate-600 hover:bg-slate-100" %> 
+          </div>
+          <div class="relative ml-3">
+            <%= link_to "Sign in", new_user_session_path, class: "font-medium px-2 py-1 rounded text-slate-600 hover:bg-slate-100" %> 
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,4 @@
+web: env RUBY_DEBUG_OPEN=true bin/rails server
+js: yarn build --reload
+css: npx @tailwindcss/cli@next -i ./app/assets/stylesheets/template/tailwind-theme.css -o ./app/assets/stylesheets/application.css --watch
+jobs: bundle exec rake solid_queue:start

@@ -1,0 +1,9 @@
+<footer class="border-t-1 border-slate-100 text-slate-500 text-sm bg-white">
+  <div class="mx-auto max-w-screen-lg px-4 py-6 sm:px-6 lg:px-8 flex lg:justify-between">
+    <div class="mr-4">&copy; <%= Date.today.year %> <%= Rails.configuration.application_name %> </div>
+    <div class="flex">
+      <div class=""><%= link_to "Terms", terms_path %></div>
+      <div class="ml-4"><%= link_to "Privacy", privacy_path %></div>
+    </div>
+  </div>
+</footer>

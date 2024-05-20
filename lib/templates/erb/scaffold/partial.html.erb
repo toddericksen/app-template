@@ -1,0 +1,15 @@
+<div id="<%%= dom_id <%= singular_name %> %>" class="">
+  <h2 class="pt-4 pl-4 text-xl font-medium"><%= singular_name.capitalize %></h2>
+  <%%= link_to <%= singular_name %> do %>
+  <dl class="divide-y divide-gray-100">
+    <%- attributes.each do |attribute| -%>
+      <div class="p-4 sm:grid sm:grid-cols-3 sm:gap-4">
+        <dt class="font-medium leading-6 text-gray-900 text-sm"><%= attribute.human_name %></dt>
+        <dd class="mt-1  leading-6 text-gray-700 sm:col-span-2 sm:mt-0  line-clamp-3">
+          <%%= render partial: "shared/fields/<%= attribute.type %>/show", locals: { field: <%= model_resource_name %>.<%= attribute.column_name %>, record: <%= model_resource_name %>, resource: <%= model_resource_name %>} %>
+        </dd>
+      </div>
+    <%- end -%>
+  </dl>
+  <%% end %>
+</div>

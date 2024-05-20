@@ -1,0 +1,8 @@
+<% flash.each do |msg_type, message| %>
+  <div class="absolute bottom-3 left-0 w-auto animate-slide-in-bottom-slow z-10">
+    <div class="alert-<%= msg_type %>" role="alert">
+      <%= message %>
+      <button type="button" class="" aria-label="Close"></button>
+    </div>
+  </div>
+<% end %>

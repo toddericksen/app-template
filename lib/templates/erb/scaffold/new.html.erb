@@ -1,0 +1,28 @@
+<header class="shadow sticky top-0 bg-white z-10">
+  <div class="px-4 py-6 sm:px-6 lg:px-8 flex justify-between">
+    <div>
+      <nav aria-label="Breadcrumb" class="mb-1">
+        <ol role="list" class="mx-auto flex items-center space-x-2  lg:max-w-screen-lg ">
+          <li>
+            <div class="flex items-center -ml-3">
+              <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8.84182 3.13514C9.04327 3.32401 9.05348 3.64042 8.86462 3.84188L5.43521 7.49991L8.86462 11.1579C9.05348 11.3594 9.04327 11.6758 8.84182 11.8647C8.64036 12.0535 8.32394 12.0433 8.13508 11.8419L4.38508 7.84188C4.20477 7.64955 4.20477 7.35027 4.38508 7.15794L8.13508 3.15794C8.32394 2.95648 8.64036 2.94628 8.84182 3.13514Z" fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+              <%%= link_to <%= index_helper %>_path, class:'mr-2 text-sm font-medium text-gray-900' do %>
+              All <%= plural_table_name.capitalize %>
+              <%% end %>
+            </div>
+          </li>
+        </ol>
+      </nav>
+      <h1 class="text-3xl font-medium tracking-tight text-gray-900">
+        New <%= singular_table_name.capitalize %>
+      </h1>
+    </div>
+    <div class="flex gap-x-4 items-center">
+      <input name="commit" data-disable-with="Save" type="submit" form="new_<%= singular_table_name %>" value="Save changes" class="form-button" />
+      <%%= link_to "Cancel", <%= index_helper(type: :path) %>, class: "form-button-tertiary" %>
+    </div>
+  </div>
+</header>
+<main class="mx-auto max-w-screen-lg px-4 py-6 sm:px-6 lg:px-8 animate-slide-in-bottom">
+  <%%= render 'form', <%= singular_table_name %>: @<%= singular_table_name %> %>
+</main>

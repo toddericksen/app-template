@@ -1,0 +1,35 @@
+<%%= form_with(model: <%= model_resource_name %>, class: "w-content max-w-3xl", id: dom_id(@<%= model_resource_name %>)) do |form| %>
+<%% if <%= singular_table_name %>.errors.any? %>
+<div class="mx-auto my-4">
+  <div class="p-6 rounded-lg bg-red-50">
+    <div class="flex">
+      <div class="shrink-0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" class="size-6 fill-red-400"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.28 7.22a.75.75 0 00-1.06 1.06L8.94 10l-1.72 1.72a.75.75 0 101.06 1.06L10 11.06l1.72 1.72a.75.75 0 101.06-1.06L11.06 10l1.72-1.72a.75.75 0 00-1.06-1.06L10 8.94 8.28 7.22z" clip-rule="evenodd"></path></svg></div>
+      <div class="ml-4">
+        <h3 class="text-red-600 font-semibold font-sans leading-tight">
+          <%%= pluralize(<%= singular_table_name %>.errors.count, "error") %> kept this <%= singular_table_name %> from being saved:
+        </h3>
+        <div class="mt-4 text-normal text-red-600">
+          <ul role="list" class="pl-4 list-disc leading-relaxed">
+            <%% <%= singular_table_name %>.errors.each do |error| %>
+            <li class="leading-snug mb-2"><%%= error.full_message %></li>
+            <%% end %>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<%% end %>
+<div class="grid grid-cols-1 md:divide-y md:divide-gray-100 items-center">
+  <% attributes.each do |attribute| %>
+    <dl class="grid grid-cols-1 gap-0 py-2 md:grid-cols-4 md:gap-4 md:py-4 md:mb-2">
+      <dt class="whitespace-nowrap text-slate-500 md:text-right text-sm text-left pt-2" data-field="<%= attribute.column_name %>">
+        <%%= form.label :<%= attribute.column_name %> %>
+      </dt>
+      <dd class="md:col-span-3">
+        <%%= render partial: "shared/fields/<%= attribute.type %>/form", locals: { field: :<%= attribute.column_name %>, record: <%= model_resource_name %>, form: form, resource: <%= model_resource_name %>} %>
+      </dd>
+    </dl>
+  <% end %>
+</div>
+<%% end %>

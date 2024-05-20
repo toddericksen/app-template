@@ -1,0 +1,82 @@
+<div class="absolute h-full w-full transition overflow-hidden">
+  <div class="absolute top-1/8 left-1/8 w-2/3 h-2/3 bg-yellow-300 rounded-full mix-blend-multiply filter blur-2xl opacity-0 animate-blob"></div>
+  <div class="absolute top-1/4 left-1/4 w-2/3 h-2/3 bg-purple-300 rounded-full mix-blend-multiply filter blur-2xl opacity-40 animate-blob animation-delay-2000"></div>
+  <div class="absolute top-1/2 left-1/2 w-2/3 h-2/3 bg-green-200 rounded-full mix-blend-multiply filter blur-2xl opacity-40 animate-blob animation-delay-4000"></div>
+</div>
+<div class="lg:w-1/2 md:w-full min-h-screen backdrop-blur bg-white/80 flex flex-col justify-center">
+  <div class="sm:w-full">
+    <svg class="fill-green-600 mx-auto mb-4 scale-150"  width="30" height="27" viewBox="0 0 30 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M6.16734 26.3733C7.26534 26.5932 13.7218 26.7031 15.1492 26.7031C16.5766 26.7031 23.0331 26.5932 24.1311 26.3733C25.2291 26.1535 26.5212 25.4589 27.2679 24.8482C28.0364 24.2376 28.7865 23.1036 29.1818 21.98C29.5771 20.832 29.7418 15.3979 29.7418 13.5171C29.7418 11.6852 29.5551 5.77434 29.1818 4.65076C28.8305 3.50276 28.2638 2.51414 27.5172 1.9035C26.7925 1.29286 25.1742 0.92248 24.0982 0.70265C23.0222 0.458394 16.5766 0.336266 15.1492 0.336266C13.7218 0.336266 7.25436 0.44618 6.1344 0.666011C5.03641 0.861415 3.98162 1.32888 3.21302 1.93952C2.46638 2.55016 1.89542 3.42949 1.50014 4.57749C1.10487 5.72549 0.907227 11.6608 0.907227 13.5171C0.907227 15.3735 1.11585 20.7953 1.46721 21.9433C1.84052 23.0669 2.44625 24.162 3.17092 24.7726C3.91756 25.3832 5.0913 26.1291 6.16734 26.3733ZM16.3645 18.0504L17.2861 17.0687L23.1307 10.8429C23.3855 10.5716 23.5873 10.3406 23.7362 10.15C23.8851 9.95942 23.9246 9.74131 23.8549 9.49566C23.8012 9.26501 23.5907 8.97734 23.2235 8.63266L21.0924 6.63202L13.3821 14.8452C13.0374 15.2124 12.6953 15.4168 12.3559 15.4585C12.0164 15.5002 11.6471 15.3337 11.2481 14.9591C11.0565 14.7793 10.8231 14.5001 10.5478 14.1215C10.3034 13.742 10.1314 13.4453 10.0317 13.2316L8.25588 15.1233C8.625 15.5299 8.9542 15.899 9.2435 16.2306C9.54876 16.5773 9.86103 16.9004 10.1803 17.2002C10.4846 17.5158 10.8278 17.838 11.2099 18.1668C11.6559 18.5554 12.115 18.8662 12.587 19.0992C13.0741 19.3161 13.5652 19.4168 14.0604 19.4012C14.5715 19.4005 15.0539 19.2226 15.5074 18.8675C15.7491 18.674 16.0348 18.4016 16.3645 18.0504Z" />
+    </svg>
+    <h2
+        class="mt-10 text-center text-2xl font-medium font-serif leading-9 tracking-tight text-gray-900"
+      >
+      Sign in to your account
+    </h2>
+  </div>
+  <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: "new_user mx-6 mb-10"}) do |f| %>
+      <div>
+        <div>
+          <button
+            type="submit"
+            class="flex w-full justify-center rounded-md bg-white px-3 py-2 font-semibold text-slate-600 ring ring-gray-300 shadow-sm hover:bg-green-500 hover:text-white cursor-pointer focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600"
+          >
+            <svg class="mt-1 w-4 mr-2" aria-hidden="true" viewBox="0 0 24 24"><path d="M12.0003 4.75C13.7703 4.75 15.3553 5.36002 16.6053 6.54998L20.0303 3.125C17.9502 1.19 15.2353 0 12.0003 0C7.31028 0 3.25527 2.69 1.28027 6.60998L5.27028 9.70498C6.21525 6.86002 8.87028 4.75 12.0003 4.75Z" fill="#EA4335"></path><path d="M23.49 12.275C23.49 11.49 23.415 10.73 23.3 10H12V14.51H18.47C18.18 15.99 17.34 17.25 16.08 18.1L19.945 21.1C22.2 19.01 23.49 15.92 23.49 12.275Z" fill="#4285F4"></path><path d="M5.26498 14.2949C5.02498 13.5699 4.88501 12.7999 4.88501 11.9999C4.88501 11.1999 5.01998 10.4299 5.26498 9.7049L1.275 6.60986C0.46 8.22986 0 10.0599 0 11.9999C0 13.9399 0.46 15.7699 1.28 17.3899L5.26498 14.2949Z" fill="#FBBC05"></path><path d="M12.0004 24.0001C15.2404 24.0001 17.9654 22.935 19.9454 21.095L16.0804 18.095C15.0054 18.82 13.6204 19.245 12.0004 19.245C8.8704 19.245 6.21537 17.135 5.2654 14.29L1.27539 17.385C3.25539 21.31 7.3104 24.0001 12.0004 24.0001Z" fill="#34A853"></path></svg>
+            <span>
+              Sign in with Google</span>
+          </button>
+        </div>
+        <div class="mt-4">
+          <button
+            type="submit"
+            class="flex w-full justify-center rounded-md bg-white px-3 py-2 font-semibold text-slate-600 ring ring-gray-300 shadow-sm hover:bg-green-500 hover:text-white cursor-pointer focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600"
+          >
+            Sign in with Microsoft
+          </button>
+        </div>
+      </div>
+      <div class="flex justify-center w-full my-6 gap-0 grid-flow-row">
+        <div class="h-full border-b-1 border-gray-300 grow">&nbsp;</div>
+        <div class="pt-3 mx-3 h-full text-gray-400  text-center text-sm">or sign in with</div>
+        <div class="h-full border-b-1 border-gray-300 grow">&nbsp;</div>
+      </div>
+      <div>
+        <label
+            for="email"
+            class="block text-sm font-medium leading-6 text-gray-900"
+            >Email address</label
+          >
+        <div class="mt-3">
+          <%= f.email_field :email, autofocus: true, placeholder: 'Email Address', class: "block w-full rounded-md border-0  text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-green-600 focus:outline-none sm:leading-6" %>
+        </div>
+      </div>
+      <div class="mt-3">
+        <div class="flex items-center justify-between">
+          <label
+              for="password"
+              class="block text-sm font-medium leading-6 text-gray-900"
+              >Password</label
+            >
+        </div>
+        <div class="mt-3">
+          <%= f.password_field :password, autocomplete: "off", placeholder: 'Password', class: 'block w-full rounded-md border-0  text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-green-600 focus:outline-none sm:leading-6' %>
+        </div>
+      </div>
+      <% if devise_mapping.rememberable? -%>
+        <div class="my-4">
+          <label
+            class="block text-sm font-medium leading-6 text-gray-600"
+            >
+            <%= f.check_box :remember_me, class: "mr-1" %>
+            Remember me</label
+          >
+        </div>
+      <% end -%>
+      <div>
+        <%= f.submit "Sign in", class: "flex w-full justify-center rounded-md bg-green-600 px-3 py-2 font-semibold text-white shadow-sm  focus-visible:outline hover:bg-green-700 cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600" %>
+      </div>
+    <% end %>
+    <%= render "devise/shared/links" %>
+  </div>
+</div>

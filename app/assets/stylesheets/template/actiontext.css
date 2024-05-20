@@ -1,0 +1,513 @@
+/*
+ * Provides a drop-in pointer for the default Trix stylesheet that will format the toolbar and
+ * the trix-editor content (whether displayed or under editing). Feel free to incorporate this
+ * inclusion directly in any other asset bundle and remove this file.
+ *
+*/
+
+/*
+ * We need to override trix.css’s image gallery styles to accommodate the
+ * <action-text-attachment> element we wrap around attachments. Otherwise,
+ * images in galleries will be squished by the max-width: 33%; rule.
+*/
+
+.trix-content .attachment-gallery > action-text-attachment,
+.trix-content .attachment-gallery > .attachment {
+  flex: 1 0 33%;
+  padding: 0 0.5em;
+  max-width: 33%;
+}
+
+.trix-content
+  .attachment-gallery.attachment-gallery--2
+  > action-text-attachment,
+.trix-content .attachment-gallery.attachment-gallery--2 > .attachment,
+.trix-content
+  .attachment-gallery.attachment-gallery--4
+  > action-text-attachment,
+.trix-content .attachment-gallery.attachment-gallery--4 > .attachment {
+  flex-basis: 50%;
+  max-width: 50%;
+}
+
+.trix-content action-text-attachment .attachment {
+  padding: 0 !important;
+  max-width: 100% !important;
+}
+.trix-editor-container {
+  @apply block w-full rounded mt-1 border-0 py-2 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-green-600 focus:outline-none placeholder:text-slate-400 disabled:opacity-50 disabled:bg-gray-100 disabled:shadow-none disabled:cursor-not-allowed;
+}
+trix-editor {
+  @apply min-h-24 outline-0 p-1;
+}
+
+trix-toolbar * {
+  @apply box-border;
+}
+
+trix-toolbar .trix-button-row {
+  @apply flex flex-nowrap justify-between overflow-x-auto my-2;
+}
+
+trix-toolbar .trix-button-group {
+  @apply rounded flex justify-between divide-x divide-slate-200 shadow-sm border-1 border-slate-200;
+}
+
+trix-toolbar .trix-button-group:not(:first-child) {
+  @apply ml-2;
+}
+
+@media (max-width: 768px) {
+  trix-toolbar .trix-button-group:not(:first-child) {
+    @apply ml-0;
+  }
+}
+
+trix-toolbar .trix-button-group-spacer {
+  @apply grow-1;
+}
+
+@media (max-width: 768px) {
+  trix-toolbar .trix-button-group-spacer {
+    display: none;
+  }
+}
+
+trix-toolbar .trix-button {
+  @apply relative block whitespace-nowrap bg-transparent;
+}
+
+trix-toolbar .trix-button--icon.trix-active {
+  @apply before:bg-green-600/15 before:text-slate-600 before:rounded-[1px]  before:ring-2 before:ring-green-600/15 before:ring-offset-0;
+}
+
+trix-toolbar .trix-button:not(:disabled) {
+  @apply cursor-pointer;
+}
+
+trix-toolbar .trix-button:disabled {
+  color: rgba(0, 0, 0, 0.125);
+}
+
+@media (max-width: 768px) {
+  trix-toolbar .trix-button {
+    letter-spacing: -0.01em;
+    padding: 0 0.3em;
+  }
+}
+
+trix-toolbar .trix-button--icon {
+  @apply before:inset-y-1 before:inset-x-1 block size-8 -indent-[9999px] overflow-hidden  before:inline-block before:absolute before:opacity-80 before:inset-y-1 before:inset-x-1 before:bg-center before:bg-no-repeat before:bg-contain before:content-[''];
+}
+
+@media (max-width: 768px) {
+  trix-toolbar .trix-button--icon {
+    height: 2em;
+    max-width: calc(0.8em + 3.5vw);
+  }
+}
+
+@media (max-width: 768px) {
+  trix-toolbar .trix-button--icon::before {
+    right: 6%;
+    left: 6%;
+  }
+}
+trix-toolbar .trix-button--icon.trix-active::before {
+  @apply opacity-100;
+}
+trix-toolbar .trix-button--icon:disabled::before {
+  @apply opacity-15;
+}
+
+trix-toolbar .trix-button--icon-attach::before {
+  background-image: url("data:image/svg+xml,%3Csvg width='15' height='15' viewBox='0 0 15 15' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10.71 10.1902C10.71 11.0892 10.3999 11.8543 9.77977 12.4853C9.15959 13.1164 8.40091 13.4319 7.50373 13.4319C6.59383 13.4319 5.83066 13.1028 5.21422 12.4445C4.59777 11.7863 4.28955 10.9955 4.28955 10.0723V3.86877C4.28955 3.2302 4.5099 2.68708 4.9506 2.2394C5.3913 1.79172 5.92949 1.56787 6.56517 1.56787C7.21089 1.56787 7.75073 1.80672 8.1847 2.2844C8.61868 2.76209 8.83567 3.32944 8.83567 3.98645V9.80696C8.83567 10.1774 8.70746 10.4945 8.45103 10.7585C8.19461 11.0224 7.88043 11.1544 7.50848 11.1544C7.12705 11.1544 6.80813 11.017 6.55172 10.7424C6.29531 10.4678 6.1671 10.1337 6.1671 9.74029V3.85055H6.96643V9.80696C6.96643 9.95883 7.01783 10.0881 7.12062 10.1949C7.22341 10.3017 7.35089 10.355 7.50307 10.355C7.65618 10.355 7.78333 10.3021 7.88453 10.1962C7.98573 10.0903 8.03633 9.96059 8.03633 9.80696V3.86337C8.04402 3.44884 7.90381 3.09584 7.6157 2.80439C7.3276 2.51293 6.97631 2.3672 6.56182 2.3672C6.1494 2.3672 5.8008 2.51956 5.51603 2.82427C5.23127 3.12897 5.08888 3.48859 5.08888 3.90312V10.1876C5.09657 10.8633 5.33268 11.437 5.79722 11.9086C6.26175 12.3801 6.8316 12.6215 7.50677 12.6326C8.18182 12.6437 8.75562 12.3996 9.22817 11.9002C9.7007 11.4009 9.92821 10.8027 9.91068 10.1057V3.85055H10.71V10.1902Z' fill='black'/%3E%3C/svg%3E%0A");
+}
+
+trix-toolbar .trix-button--icon-bold::before {
+  background-image: url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M5.04883 11.3254V4.01782C5.04883 3.29321 5.36328 3.0061 6.14941 3.0061H8.54883C10.1416 3.0061 11.1396 3.89478 11.1396 5.30298C11.1396 6.34204 10.6133 7.06665 9.64941 7.36743V7.41528C10.9141 7.58618 11.6729 8.44067 11.6729 9.72583C11.6729 11.3459 10.4355 12.3372 8.41211 12.3372H6.14941C5.36328 12.3372 5.04883 12.05 5.04883 11.3254ZM6.23828 7.02563H7.66699C9.23242 7.02563 9.93652 6.54712 9.93652 5.50806C9.93652 4.58521 9.35547 4.052 8.35742 4.052H6.23828V7.02563ZM6.23828 11.2913H7.8584C9.7041 11.2913 10.4492 10.8333 10.4492 9.73267C10.4492 8.66626 9.73145 8.05103 8.4873 8.05103H6.23828V11.2913Z' fill='black'/%3E%3C/svg%3E%0A");
+}
+
+trix-toolbar .trix-button--icon-italic::before {
+  background-image: url("data:image/svg+xml,%3Csvg width='15' height='16' viewBox='0 0 15 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M5.67482 4.25029C5.67482 4.00176 5.87629 3.80029 6.12482 3.80029H10.6248C10.8733 3.80029 11.0748 4.00176 11.0748 4.25029C11.0748 4.49882 10.8733 4.70029 10.6248 4.70029H9.00575L7.23078 11.8002H8.8748C9.12333 11.8002 9.3248 12.0016 9.3248 12.2502C9.3248 12.4987 9.12333 12.7002 8.8748 12.7002H4.3748C4.12628 12.7002 3.9248 12.4987 3.9248 12.2502C3.9248 12.0016 4.12628 11.8002 4.3748 11.8002H5.99385L7.76882 4.70029H6.12482C5.87629 4.70029 5.67482 4.49882 5.67482 4.25029Z' fill='black'/%3E%3C/svg%3E%0A");
+}
+
+trix-toolbar .trix-button--icon-link::before {
+  background-image: url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M8.58628 3.75544C9.26263 3.29597 10.1178 3.28697 10.7531 3.70422C10.8974 3.79896 11.0515 3.94933 11.4634 4.36122C11.8753 4.7731 12.0256 4.92717 12.1204 5.07144C12.5376 5.70678 12.5286 6.56195 12.0691 7.2383C11.9643 7.39267 11.802 7.55814 11.375 7.98514L10.7563 8.60386C10.561 8.79912 10.561 9.1157 10.7563 9.31096C10.9515 9.50623 11.2681 9.50623 11.4634 9.31096L12.0821 8.69225L12.125 8.64932C12.4947 8.27979 12.7312 8.04333 12.8963 7.80023C13.5716 6.80626 13.6064 5.51255 12.9562 4.52251C12.7977 4.28105 12.5666 4.05004 12.2151 3.69874L12.1705 3.65411L12.1258 3.60946C11.7745 3.25803 11.5435 3.02692 11.3021 2.86835C10.312 2.21816 9.01833 2.25302 8.02435 2.92825C7.78125 3.09339 7.54478 3.32994 7.17524 3.69958L7.13234 3.7425L6.51362 4.36122C6.31836 4.55648 6.31836 4.87306 6.51362 5.06832C6.70888 5.26359 7.02546 5.26359 7.22072 5.06832L7.83944 4.4496C8.26644 4.0226 8.43191 3.8603 8.58628 3.75544ZM4.3923 7.89675C4.58756 7.70149 4.58756 7.38491 4.3923 7.18964C4.19704 6.99438 3.88045 6.99438 3.68519 7.18964L3.06647 7.80836L3.02356 7.85127C2.65391 8.2208 2.41737 8.45727 2.25222 8.70038C1.57699 9.69435 1.54214 10.9881 2.19233 11.9781C2.3509 12.2196 2.582 12.4506 2.93344 12.8019L2.97808 12.8465L3.02271 12.8911C3.37401 13.2426 3.60502 13.4737 3.84648 13.6323C4.83653 14.2824 6.13023 14.2476 7.12421 13.5724C7.3673 13.4072 7.60377 13.1707 7.9733 12.801L7.97331 12.801L8.01622 12.7581L8.63494 12.1394C8.8302 11.9441 8.8302 11.6275 8.63494 11.4323C8.43968 11.237 8.12309 11.237 7.92783 11.4323L7.30911 12.051C6.88211 12.478 6.71664 12.6403 6.56228 12.7452C5.88592 13.2046 5.03076 13.2136 4.39541 12.7964C4.25115 12.7016 4.09708 12.5513 3.68519 12.1394C3.2733 11.7275 3.12294 11.5734 3.02819 11.4292C2.61095 10.7938 2.61995 9.93866 3.07941 9.2623C3.18428 9.10794 3.34658 8.94247 3.77358 8.51547L4.3923 7.89675ZM9.69606 6.83561C9.89132 6.64035 9.89132 6.32376 9.69606 6.1285C9.5008 5.93324 9.18422 5.93324 8.98896 6.1285L5.45342 9.66404C5.25816 9.8593 5.25816 10.1759 5.45342 10.3711C5.64868 10.5664 5.96527 10.5664 6.16053 10.3711L9.69606 6.83561Z' fill='black'/%3E%3C/svg%3E%0A");
+}
+
+trix-toolbar .trix-button--icon-strike::before {
+  background-image: url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M5.51871 4C5.51871 3.72386 5.29485 3.5 5.01871 3.5C4.74256 3.5 4.51871 3.72386 4.51871 4V7.85003H3.01865C2.79774 7.85003 2.61865 8.02912 2.61865 8.25003C2.61865 8.47094 2.79774 8.65003 3.01865 8.65003H4.51871V9.3C4.51871 11.233 6.08571 12.8 8.01871 12.8C9.9517 12.8 11.5187 11.233 11.5187 9.3V8.65003H13.0187C13.2396 8.65003 13.4187 8.47094 13.4187 8.25003C13.4187 8.02912 13.2396 7.85003 13.0187 7.85003H11.5187V4C11.5187 3.72386 11.2948 3.5 11.0187 3.5C10.7426 3.5 10.5187 3.72386 10.5187 4V7.85003H5.51871V4ZM5.51871 8.65003V9.3C5.51871 10.6807 6.638 11.8 8.01871 11.8C9.39942 11.8 10.5187 10.6807 10.5187 9.3V8.65003H5.51871Z' fill='black'/%3E%3C/svg%3E%0A");
+}
+
+trix-toolbar .trix-button--icon-quote::before {
+  background-image: url("data:image/svg+xml,%3Csvg width='17' height='17' viewBox='0 0 17 17' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M6.22093 9.51771C6.22093 11.0222 4.61547 11.608 4.9085 12.0516C4.99849 12.1878 5.32583 12.9788 5.65682 12.6375C6.4035 11.8676 7.63081 10.4647 7.63081 8.31406V5.30635C7.63081 4.75407 7.1831 4.30737 6.63081 4.30737H5.0625C4.51022 4.30737 4.0625 4.75509 4.0625 5.30737V7.16499C4.0625 7.77217 4.61415 8.2255 5.20491 8.36578C5.72265 8.48872 6.22093 8.79482 6.22093 9.51771Z' fill='black'/%3E%3Cpath d='M11.5285 9.51771C11.5285 11.0222 9.92309 11.608 10.2161 12.0516C10.3061 12.1878 10.6335 12.9788 10.9644 12.6375C11.7111 11.8676 12.9384 10.4647 12.9384 8.31406V5.30635C12.9384 4.75407 12.4907 4.30737 11.9384 4.30737H10.3701C9.81783 4.30737 9.37012 4.75509 9.37012 5.30737V7.16499C9.37012 7.77217 9.92177 8.2255 10.5125 8.36578C11.0303 8.48872 11.5285 8.79482 11.5285 9.51771Z' fill='black'/%3E%3C/svg%3E%0A");
+}
+
+trix-toolbar .trix-button--icon-heading-1::before {
+  background-image: url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10.8232 12.7439C10.4541 12.7439 10.2285 12.491 10.2285 12.0876V8.38257H5.53223V12.0876C5.53223 12.491 5.2998 12.7439 4.93066 12.7439C4.56152 12.7439 4.33594 12.491 4.33594 12.0876V3.93237C4.33594 3.52905 4.56152 3.27612 4.93066 3.27612C5.2998 3.27612 5.53223 3.52905 5.53223 3.93237V7.31616H10.2285V3.93237C10.2285 3.52905 10.4541 3.27612 10.8232 3.27612C11.1924 3.27612 11.4248 3.52905 11.4248 3.93237V12.0876C11.4248 12.491 11.1924 12.7439 10.8232 12.7439Z' fill='black'/%3E%3C/svg%3E%0A");
+}
+
+trix-toolbar .trix-button--icon-code::before {
+  background-image: url("data:image/svg+xml,%3Csvg width='15' height='16' viewBox='0 0 15 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M9.96424 3.43558C10.0668 3.17919 9.94209 2.88821 9.6857 2.78565C9.4293 2.68309 9.13832 2.8078 9.03576 3.06419L5.03576 13.0642C4.9332 13.3206 5.05791 13.6116 5.3143 13.7141C5.5707 13.8167 5.86168 13.692 5.96424 13.4356L9.96424 3.43558ZM3.85355 5.89634C4.04882 6.0916 4.04882 6.40818 3.85355 6.60344L2.20711 8.24989L3.85355 9.89634C4.04882 10.0916 4.04882 10.4082 3.85355 10.6034C3.65829 10.7987 3.34171 10.7987 3.14645 10.6034L1.14645 8.60344C0.951184 8.40818 0.951184 8.0916 1.14645 7.89634L3.14645 5.89634C3.34171 5.70107 3.65829 5.70107 3.85355 5.89634ZM11.1464 5.89634C11.3417 5.70107 11.6583 5.70107 11.8536 5.89634L13.8536 7.89634C14.0488 8.0916 14.0488 8.40818 13.8536 8.60344L11.8536 10.6034C11.6583 10.7987 11.3417 10.7987 11.1464 10.6034C10.9512 10.4082 10.9512 10.0916 11.1464 9.89634L12.7929 8.24989L11.1464 6.60344C10.9512 6.40818 10.9512 6.0916 11.1464 5.89634Z' fill='black'/%3E%3C/svg%3E%0A");
+}
+
+trix-toolbar .trix-button--icon-bullet-list::before {
+  background-image: url("data:image/svg+xml,%3Csvg width='15' height='16' viewBox='0 0 15 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M1.5 6C1.91421 6 2.25 5.66421 2.25 5.25C2.25 4.83579 1.91421 4.5 1.5 4.5C1.08579 4.5 0.75 4.83579 0.75 5.25C0.75 5.66421 1.08579 6 1.5 6ZM4.52051 5.25C4.52051 4.97386 4.74437 4.75 5.02051 4.75H13.5C13.7761 4.75 14 4.97386 14 5.25C14 5.52614 13.7761 5.75 13.5 5.75H5.02051C4.74437 5.75 4.52051 5.52614 4.52051 5.25ZM5.02051 7.75C4.74437 7.75 4.52051 7.97386 4.52051 8.25C4.52051 8.52614 4.74437 8.75 5.02051 8.75H13.5C13.7761 8.75 14 8.52614 14 8.25C14 7.97386 13.7761 7.75 13.5 7.75H5.02051ZM5.02051 10.75C4.74437 10.75 4.52051 10.9739 4.52051 11.25C4.52051 11.5261 4.74437 11.75 5.02051 11.75H13.5C13.7761 11.75 14 11.5261 14 11.25C14 10.9739 13.7761 10.75 13.5 10.75H5.02051ZM2.25 8.25C2.25 8.66421 1.91421 9 1.5 9C1.08579 9 0.75 8.66421 0.75 8.25C0.75 7.83579 1.08579 7.5 1.5 7.5C1.91421 7.5 2.25 7.83579 2.25 8.25ZM1.5 12C1.91421 12 2.25 11.6642 2.25 11.25C2.25 10.8358 1.91421 10.5 1.5 10.5C1.08579 10.5 0.75 10.8358 0.75 11.25C0.75 11.6642 1.08579 12 1.5 12Z' fill='black'/%3E%3C/svg%3E%0A");
+}
+
+trix-toolbar .trix-button--icon-number-list::before {
+  background-image: url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M5.04199 4.75C4.76585 4.75 4.54199 4.97386 4.54199 5.25C4.54199 5.52614 4.76585 5.75 5.04199 5.75H13.5557C13.8318 5.75 14.0557 5.52614 14.0557 5.25C14.0557 4.97386 13.8318 4.75 13.5557 4.75H5.04199ZM4.54199 8.25C4.54199 7.97386 4.76585 7.75 5.04199 7.75H13.5557C13.8318 7.75 14.0557 7.97386 14.0557 8.25C14.0557 8.52614 13.8318 8.75 13.5557 8.75H5.04199C4.76585 8.75 4.54199 8.52614 4.54199 8.25ZM4.54199 11.25C4.54199 10.9739 4.76585 10.75 5.04199 10.75H13.5557C13.8318 10.75 14.0557 10.9739 14.0557 11.25C14.0557 11.5261 13.8318 11.75 13.5557 11.75H5.04199C4.76585 11.75 4.54199 11.5261 4.54199 11.25Z' fill='black'/%3E%3Cpath d='M2.35613 3.96908V6.87817H1.56636V4.69636H1.54932L0.912953 5.07704V4.40658L1.62886 3.96908H2.35613Z' fill='black'/%3E%3Cpath d='M0.929998 12.4978V11.9296L2.01523 11.0319C2.0872 10.9722 2.14875 10.9164 2.19988 10.8643C2.25197 10.8112 2.29174 10.7568 2.3192 10.7009C2.34761 10.6451 2.36182 10.583 2.36182 10.5148C2.36182 10.44 2.34572 10.3761 2.31352 10.3231C2.28227 10.2701 2.23871 10.2293 2.18284 10.2009C2.12697 10.1716 2.06257 10.1569 1.98966 10.1569C1.91674 10.1569 1.85235 10.1716 1.79648 10.2009C1.74155 10.2303 1.69894 10.2734 1.66863 10.3302C1.63833 10.387 1.62318 10.4561 1.62318 10.5376H0.87318C0.87318 10.333 0.919108 10.1569 1.01096 10.0092C1.10282 9.86144 1.23256 9.7478 1.40017 9.66826C1.56778 9.58871 1.76428 9.54894 1.98966 9.54894C2.22261 9.54894 2.42432 9.58634 2.59477 9.66115C2.76617 9.73502 2.89827 9.83919 2.99108 9.97365C3.08483 10.1081 3.1317 10.2658 3.1317 10.4467C3.1317 10.5584 3.1085 10.6697 3.0621 10.7805C3.0157 10.8903 2.93237 11.012 2.8121 11.1455C2.69184 11.2791 2.52091 11.4381 2.29932 11.6228L2.02659 11.8501V11.8671H3.16295V12.4978H0.929998Z' fill='black'/%3E%3C/svg%3E%0A");
+}
+
+trix-toolbar .trix-button--icon-undo::before {
+  background-image: url("data:image/svg+xml,%3Csvg width='15' height='16' viewBox='0 0 15 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M4.85355 2.89645C5.04882 3.09171 5.04882 3.40829 4.85355 3.60355L3.70711 4.75H9C11.4853 4.75 13.5 6.76472 13.5 9.25C13.5 11.7353 11.4853 13.75 9 13.75H5C4.72386 13.75 4.5 13.5261 4.5 13.25C4.5 12.9739 4.72386 12.75 5 12.75H9C10.933 12.75 12.5 11.183 12.5 9.25C12.5 7.317 10.933 5.75 9 5.75H3.70711L4.85355 6.89645C5.04882 7.09171 5.04882 7.40829 4.85355 7.60355C4.65829 7.79882 4.34171 7.79882 4.14645 7.60355L2.14645 5.60355C1.95118 5.40829 1.95118 5.09171 2.14645 4.89645L4.14645 2.89645C4.34171 2.70118 4.65829 2.70118 4.85355 2.89645Z' fill='black'/%3E%3C/svg%3E%0A");
+}
+
+trix-toolbar .trix-button--icon-redo::before {
+  background-image: url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M10.332 2.89645C10.1367 3.09171 10.1367 3.40829 10.332 3.60355L11.4784 4.75H6.18555C3.70027 4.75 1.68555 6.76472 1.68555 9.25C1.68555 11.7353 3.70027 13.75 6.18555 13.75H10.1855C10.4617 13.75 10.6855 13.5261 10.6855 13.25C10.6855 12.9739 10.4617 12.75 10.1855 12.75H6.18555C4.25255 12.75 2.68555 11.183 2.68555 9.25C2.68555 7.317 4.25255 5.75 6.18555 5.75H11.4784L10.332 6.89645C10.1367 7.09171 10.1367 7.40829 10.332 7.60355C10.5273 7.79882 10.8438 7.79882 11.0391 7.60355L13.0391 5.60355C13.2344 5.40829 13.2344 5.09171 13.0391 4.89645L11.0391 2.89645C10.8438 2.70118 10.5273 2.70118 10.332 2.89645Z' fill='black'/%3E%3C/svg%3E%0A");
+}
+
+trix-toolbar .trix-button--icon-decrease-nesting-level::before {
+  background-image: url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M2.64844 4.75C2.3723 4.75 2.14844 4.97386 2.14844 5.25C2.14844 5.52614 2.3723 5.75 2.64844 5.75H12.6484C12.9246 5.75 13.1484 5.52614 13.1484 5.25C13.1484 4.97386 12.9246 4.75 12.6484 4.75H2.64844ZM5.82324 8.25C5.82324 7.97386 6.0471 7.75 6.32324 7.75L12.6484 7.75C12.9246 7.75 13.1484 7.97386 13.1484 8.25C13.1484 8.52614 12.9246 8.75 12.6484 8.75L6.32324 8.75C6.0471 8.75 5.82324 8.52614 5.82324 8.25ZM2.14844 11.25C2.14844 10.9739 2.3723 10.75 2.64844 10.75H12.6484C12.9246 10.75 13.1484 10.9739 13.1484 11.25C13.1484 11.5261 12.9246 11.75 12.6484 11.75H2.64844C2.3723 11.75 2.14844 11.5261 2.14844 11.25Z' fill='black'/%3E%3Cpath d='M4.70654 9.67554V7.16406L2.62368 8.26659L4.70654 9.67554Z' fill='black'/%3E%3C/svg%3E%0A");
+}
+
+trix-toolbar .trix-button--icon-increase-nesting-level::before {
+  background-image: url("data:image/svg+xml,%3Csvg width='16' height='15' viewBox='0 0 16 15' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M2.59277 4C2.31663 4 2.09277 4.22386 2.09277 4.5C2.09277 4.77614 2.31663 5 2.59277 5H12.5928C12.8689 5 13.0928 4.77614 13.0928 4.5C13.0928 4.22386 12.8689 4 12.5928 4H2.59277ZM5.76758 7.5C5.76758 7.22386 5.99144 7 6.26758 7L12.5928 7C12.8689 7 13.0928 7.22386 13.0928 7.5C13.0928 7.77614 12.8689 8 12.5928 8L6.26758 8C5.99144 8 5.76758 7.77614 5.76758 7.5ZM2.09277 10.5C2.09277 10.2239 2.31663 10 2.59277 10H12.5928C12.8689 10 13.0928 10.2239 13.0928 10.5C13.0928 10.7761 12.8689 11 12.5928 11H2.59277C2.31663 11 2.09277 10.7761 2.09277 10.5Z' fill='black'/%3E%3Cpath d='M2.56787 8.92554V6.41406L4.65073 7.51659L2.56787 8.92554Z' fill='black'/%3E%3C/svg%3E%0A");
+}
+
+trix-toolbar .trix-dialogs {
+  position: relative;
+}
+
+trix-toolbar .trix-dialog {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  font-size: 0.75em;
+  padding: 15px 10px;
+  background: #fff;
+  box-shadow: 0 0.3em 1em #ccc;
+  border-top: 2px solid #888;
+  border-radius: 5px;
+  z-index: 5;
+}
+
+trix-toolbar .trix-input--dialog {
+  font-size: inherit;
+  font-weight: normal;
+  padding: 0.5em 0.8em;
+  margin: 0 10px 0 0;
+  border-radius: 3px;
+  border: 1px solid #bbb;
+  background-color: #fff;
+  box-shadow: none;
+  outline: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+trix-toolbar .trix-input--dialog.validate:invalid {
+  box-shadow: #f00 0px 0px 1.5px 1px;
+}
+
+trix-toolbar .trix-button--dialog {
+  font-size: inherit;
+  padding: 0.5em;
+  border-bottom: none;
+}
+
+trix-toolbar .trix-dialog--link {
+  max-width: 600px;
+}
+
+trix-toolbar .trix-dialog__link-fields {
+  display: flex;
+  align-items: baseline;
+}
+trix-toolbar .trix-dialog__link-fields .trix-input {
+  flex: 1;
+}
+trix-toolbar .trix-dialog__link-fields .trix-button-group {
+  flex: 0 0 content;
+  margin: 0;
+}
+
+trix-editor [data-trix-mutable]:not(.attachment__caption-editor) {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+trix-editor [data-trix-mutable]::-moz-selection,
+trix-editor [data-trix-cursor-target]::-moz-selection,
+trix-editor [data-trix-mutable] ::-moz-selection {
+  background: none;
+}
+
+trix-editor [data-trix-mutable]::selection,
+trix-editor [data-trix-cursor-target]::selection,
+trix-editor [data-trix-mutable] ::selection {
+  background: none;
+}
+
+trix-editor
+  .attachment__caption-editor:focus[data-trix-mutable]::-moz-selection {
+  background: highlight;
+}
+
+trix-editor .attachment__caption-editor:focus[data-trix-mutable]::selection {
+  background: highlight;
+}
+
+trix-editor [data-trix-mutable].attachment.attachment--file {
+  box-shadow: 0 0 0 2px highlight;
+  border-color: transparent;
+}
+
+trix-editor [data-trix-mutable].attachment img {
+  box-shadow: 0 0 0 2px highlight;
+}
+
+trix-editor .attachment {
+  position: relative;
+}
+trix-editor .attachment:hover {
+  cursor: default;
+}
+
+trix-editor .attachment--preview .attachment__caption:hover {
+  cursor: text;
+}
+
+trix-editor .attachment__progress {
+  position: absolute;
+  z-index: 1;
+  height: 20px;
+  top: calc(50% - 10px);
+  left: 5%;
+  width: 90%;
+  opacity: 0.9;
+  transition: opacity 200ms ease-in;
+}
+trix-editor .attachment__progress[value="100"] {
+  opacity: 0;
+}
+
+trix-editor .attachment__caption-editor {
+  display: inline-block;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  font-size: inherit;
+  font-family: inherit;
+  line-height: inherit;
+  color: inherit;
+  text-align: center;
+  vertical-align: top;
+  border: none;
+  outline: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+trix-editor .attachment__toolbar {
+  position: absolute;
+  z-index: 1;
+  top: -0.9em;
+  left: 0;
+  width: 100%;
+  text-align: center;
+}
+
+trix-editor .trix-button-group {
+  display: inline-flex;
+}
+
+trix-editor .trix-button {
+  position: relative;
+  float: left;
+  color: #666;
+  white-space: nowrap;
+  font-size: 80%;
+  padding: 0 0.8em;
+  margin: 0;
+  outline: none;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+}
+trix-editor .trix-button:not(:first-child) {
+  border-left: 1px solid #ccc;
+}
+trix-editor .trix-button.trix-active {
+  background: #cbeefa;
+}
+trix-editor .trix-button:not(:disabled) {
+  cursor: pointer;
+}
+
+trix-editor .trix-button--remove {
+  text-indent: -9999px;
+  display: inline-block;
+  padding: 0;
+  outline: none;
+  width: 1.8em;
+  height: 1.8em;
+  line-height: 1.8em;
+  border-radius: 50%;
+  background-color: #fff;
+  border: 2px solid highlight;
+  box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.25);
+}
+trix-editor .trix-button--remove::before {
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  opacity: 0.7;
+  content: "";
+  background-image: url("data:image/svg+xml,%3Csvg%20height%3D%2224%22%20width%3D%2224%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M19%206.41%2017.59%205%2012%2010.59%206.41%205%205%206.41%2010.59%2012%205%2017.59%206.41%2019%2012%2013.41%2017.59%2019%2019%2017.59%2013.41%2012z%22%2F%3E%3Cpath%20d%3D%22M0%200h24v24H0z%22%20fill%3D%22none%22%2F%3E%3C%2Fsvg%3E");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 90%;
+}
+trix-editor .trix-button--remove:hover {
+  border-color: #333;
+}
+trix-editor .trix-button--remove:hover::before {
+  opacity: 1;
+}
+
+trix-editor .attachment__metadata-container {
+  position: relative;
+}
+
+trix-editor .attachment__metadata {
+  position: absolute;
+  left: 50%;
+  top: 2em;
+  transform: translate(-50%, 0);
+  max-width: 90%;
+  padding: 0.1em 0.6em;
+  font-size: 0.8em;
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.7);
+  border-radius: 3px;
+}
+trix-editor .attachment__metadata .attachment__name {
+  display: inline-block;
+  max-width: 100%;
+  vertical-align: bottom;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+trix-editor .attachment__metadata .attachment__size {
+  margin-left: 0.2em;
+  white-space: nowrap;
+}
+
+.trix-content {
+  line-height: 1.5;
+}
+.trix-content * {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+.trix-content h1 {
+  font-size: 1.2em;
+  line-height: 1.2;
+}
+.trix-content blockquote {
+  border: 0 solid #ccc;
+  border-left-width: 0.3em;
+  margin-left: 0.3em;
+  padding-left: 0.6em;
+}
+.trix-content [dir="rtl"] blockquote,
+.trix-content blockquote[dir="rtl"] {
+  border-width: 0;
+  border-right-width: 0.3em;
+  margin-right: 0.3em;
+  padding-right: 0.6em;
+}
+.trix-content li {
+  margin-left: 1em;
+}
+.trix-content [dir="rtl"] li {
+  margin-right: 1em;
+}
+.trix-content pre {
+  display: inline-block;
+  width: 100%;
+  vertical-align: top;
+  font-family: monospace;
+  font-size: 0.9em;
+  padding: 0.5em;
+  white-space: pre;
+  background-color: #eee;
+  overflow-x: auto;
+}
+.trix-content img {
+  max-width: 100%;
+  height: auto;
+}
+.trix-content .attachment {
+  display: inline-block;
+  position: relative;
+  max-width: 100%;
+}
+.trix-content .attachment a {
+  color: inherit;
+  text-decoration: none;
+}
+.trix-content .attachment a:hover,
+.trix-content .attachment a:visited:hover {
+  color: inherit;
+}
+.trix-content .attachment__caption {
+  text-align: center;
+}
+.trix-content
+  .attachment__caption
+  .attachment__name
+  + .attachment__size::before {
+  content: " \2022 ";
+}
+.trix-content .attachment--preview {
+  width: 100%;
+  text-align: center;
+}
+.trix-content .attachment--preview .attachment__caption {
+  color: #666;
+  font-size: 0.9em;
+  line-height: 1.2;
+}
+.trix-content .attachment--file {
+  color: #333;
+  line-height: 1;
+  margin: 0 2px 2px 2px;
+  padding: 0.4em 1em;
+  border: 1px solid #bbb;
+  border-radius: 5px;
+}
+.trix-content .attachment-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+}
+.trix-content .attachment-gallery .attachment {
+  flex: 1 0 33%;
+  padding: 0 0.5em;
+  max-width: 33%;
+}
+.trix-content .attachment-gallery.attachment-gallery--2 .attachment,
+.trix-content .attachment-gallery.attachment-gallery--4 .attachment {
+  flex-basis: 50%;
+  max-width: 50%;
+}
